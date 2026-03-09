@@ -1,0 +1,29 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+// ---------------------------------------------------------------------
+// Core System Tables (Tablas de configuración general)
+// ---------------------------------------------------------------------
+
+model AppSetting {
+  id          Int      @id @default(autoincrement())                 // ID interno
+  key         String   @unique                                       // Ej: "maintenance_mode", "api_version"
+  value       String                                                 // Ej: "true", "v1.0.0"
+  description String?                                                // Qué hace esta configuración
+  updatedAt   DateTime @updatedAt                                    // Última vez que se modificó
+  
+  @@map("sys_app_settings") // Nombramos la tabla en la BD con un prefijo "sys_" para indicar que es del sistema
+}
