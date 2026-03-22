@@ -27,3 +27,34 @@ model AppSetting {
   
   @@map("sys_app_settings") // Nombramos la tabla en la BD con un prefijo "sys_" para indicar que es del sistema
 }
+
+// ---------------------------------------------------------------------
+// Task Management Tables (Tablas de gestión de tareas)
+// ---------------------------------------------------------------------
+
+model Task {
+  id          Int      @id @default(autoincrement())                 // ID interno de la tarea
+  title       String                                                 // Título de la tarea
+  description String?                                                // Descripción detallada
+  status      TaskStatus @default(PENDING)                           // Estado actual (PENDING, IN_PROGRESS, COMPLETED)
+  priority    TaskPriority @default(MEDIUM)                          // Prioridad (LOW, MEDIUM, HIGH)
+  dueDate     DateTime?                                              // Fecha límite para completar la tarea
+  createdAt   DateTime @default(now())                               // Fecha de creación
+  updatedAt   DateTime @updatedAt                                    // Fecha de última modificación
+  
+  @@map("tasks") // Nombramos la tabla en la BD como "tasks"
+}
+
+// *** Enums (Tipos de datos enumerados) ***
+
+enum TaskStatus {
+  PENDING       // Pendiente
+  IN_PROGRESS   // En progreso
+  COMPLETED     // Completada
+}
+
+enum TaskPriority {
+  LOW       // Baja
+  MEDIUM    // Media
+  HIGH      // Alta
+}
