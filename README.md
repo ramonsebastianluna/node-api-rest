@@ -1,6 +1,6 @@
 # Node API REST - Setup Starter
 
-Este proyecto es una plantilla inicial para construir una API REST robusta utilizando Node.js, TypeScript, Express y Prisma, conectada a una base de datos PostgreSQL (ideal para usarse con Supabase u otra DBaaS).
+Este proyecto es una plantilla inicial para construir una API REST robusta utilizando Node.js, TypeScript, Express y Prisma, conectada a una base de datos PostgreSQL (ideal para usarse con Supabase u otra DBaaS). Además, cuenta con un entorno preconfigurado para pruebas unitarias y de integración utilizando Jest y Supertest.
 
 ## Requisitos Previos
 
@@ -50,9 +50,25 @@ npm run dev
 El servidor estará corriendo de manera local. Puedes probar que la API está viva en la ruta de "Health Check":
 `http://localhost:3000/api/health`
 
+### 5. Pruebas (Testing)
+
+Este proyecto incluye un entorno de testing listo para usarse. Utiliza **Jest** para las pruebas unitarias (ideales para la capa de servicios) y **Supertest** para las pruebas de integración (capa de controladores y rutas).
+
+Para ejecutar toda la suite de pruebas una sola vez:
+```bash
+npm run test
+```
+
+Para mantener Jest escuchando cambios en tiempo real mientras desarrollas (Modo Watch):
+```bash
+npm run test:watch
+```
+
 ## Tecnologías Principales y Arquitectura
 
 - **Servidor:** Express
 - **Lenguaje:** TypeScript (código fuente en `/src`)
 - **Base de Datos ORM:** Prisma
+- **Testing:** Jest + Supertest
 - **Vigilancia de Cambios:** Nodemon
+
